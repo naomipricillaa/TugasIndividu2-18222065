@@ -104,6 +104,8 @@ MEDIA_ROOT = BASE_DIR / 'media'  # Path where uploaded files will be saved
 LOGIN_REDIRECT_URL = 'landing_page'  # Redirect to landing page after login
 LOGIN_URL = 'login'  # Redirect to login page if not authenticated
 
+LOGOUT_REDIRECT_URL = 'index_page'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 

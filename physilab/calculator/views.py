@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from .models import CalculationHistory
 
+@login_required
 def calculate_pressure(request):
     if request.method == 'POST':
         # Retrieve input values from the form
