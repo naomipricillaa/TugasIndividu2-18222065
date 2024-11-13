@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PhysiLab</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="icon" href="{% static 'images/logo3.png' %}">
+</head>
+<body>
+    <header class="header">
+        <div class="logo-container">
+            <img src="{% static 'images/logo.png' %}" alt="PhysiLab Logo" class="logo">
+            <h1>PhysiLab</h1>
+        </div>
+        <nav class="nav-links-mobile-only">
+            <a href="{% url 'landing_page' %}" class="home-link">Home</a>
+        </nav>
+        <nav class="nav-links">
+            <a href="{% url 'calc' %}">Calculator</a>
+            <a href="{% url 'material' %}">Material</a>
+            <a href="{% url 'landing_page' %}">Home</a>
+        </nav>
+    </header>
+
+    <p class="below-header-text">Thermodynamics Virtual Lab Calculator</p>
+
+    <div class="lab-container">
+        <div class="thermometer-container">
+            <img src="{% static 'images/thermometer.png' %}" alt="Termometer" class="thermometer">
+            <input type="range" min="273" max="373" value="300" id="suhuSlider" oninput="updateSuhu(this.value)">
+            <p id="suhuValue">Suhu: 300K</p>
+        </div>
+
+        <form method="post" action="{% url 'calc' %}">
+            {% csrf_token %}
+            <div class="input-container">
+                <label for="volume">Volume (m³):</label>
+                <input type="number" id="volume" name="volume" placeholder="Masukkan volume dalam m³" value="5">
+                <label for="mol">Jumlah Mol (mol):</label>
+                <input type="number" id="mol" name="mol" placeholder="Masukkan jumlah mol" value="5">
+                <label for="suhu">Suhu (K):</label>
+                <input type="number" id="suhu" name="suhu" value="300" readonly>
+                <button type="submit">Hitung Tekanan</button>
+            </div>
+        </form>
+        
+        <div class="results-wrapper">
+            <div class="result-container">
+                <h3>Hasil Perhitungan:</h3>
+                <p id="tekananOutput">{{ result }}</p> 
+            </div>
+            <div class="result-container">
+                <h3>History Perhitungan:</h3>
+                <ul>
+                    {% for entry in history %}
+                        <p>{{ forloop.counter }}. {{ entry.result }}</p>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'js/content.js' %}"></script>
+</body>
+</html>
