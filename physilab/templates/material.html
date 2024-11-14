@@ -19,9 +19,10 @@
             <a href="landing.html" class="home-link">Home</a>
         </nav>
         <nav class="nav-links">
-            <a href="calc.html">Calculator</a>
-            <a href="material.html">Material</a>
-            <a href="landing.html">Home</a>
+            <a href="{% url 'calc' %}" class="nav-link">Calculator</a>
+            <a href="{% url 'material' %}" class="nav-link">Material</a>
+            <a href="{% url 'landing_page' %}" class="nav-link">Home</a>
+            <a href="{% url 'profile_view' %}">Profile</a>
         </nav>
     </header>
 

@@ -18,10 +18,7 @@
             <a href="{% url 'calc' %}" class="nav-link">Calculator</a>
             <a href="{% url 'material' %}" class="nav-link">Material</a>
             <a href="{% url 'landing_page' %}" class="nav-link">Home</a>
-            <form action="{% url 'logout' %}" method="post" style="display: inline;">
-                {% csrf_token %}
-                <button type="submit" class="nav-link logout-btn">Logout</button>
-            </form>
+            <a href="{% url 'profile_view' %}">Profile</a>
         </nav>
     </header>
 

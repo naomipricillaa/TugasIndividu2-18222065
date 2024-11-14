@@ -22,9 +22,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    # Your custom apps
-    'users',  # Assuming 'users' is the app handling login and signup
-    'calculator',  # New app for calculator functionalities
+    # Custom apps
+    'users.apps.UsersConfig',  # Keep only this for the 'users' app
+    'calculator',  # Your app for calculator
 ]
 
 MIDDLEWARE = [

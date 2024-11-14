@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <header class="header">
+        <div class="logo-container">
+            <img src="{% static 'images/logo.png' %}" alt="PhysiLab Logo" class="logo">
+            <h1>PhysiLab</h1>
+        </div>
+        <!-- <nav class="nav-links">
+            <a href="{% url 'calc' %}">Calculator</a>
+            <a href="{% url 'material' %}">Material</a>
+            <a href="{% url 'landing_page' %}">Home</a>
+        </nav> -->
+    </header>
+
+    <div class="profile-container">
+        <div class="profile-card">
+            <form method="POST">
+                {% csrf_token %}
+                
+                <!-- User Information Fields (username and email) -->
+                {{ user_form.username.label_tag }} {{ user_form.username }}
+                {{ user_form.email.label_tag }} {{ user_form.email }}
+                
+                <button type="submit" class="btn">Edit Profile</button>
+            </form>
+
+            <!-- <form method="POST">
+                {% csrf_token %}
+                <label for="old_password">Old Password:</label>
+                {{ password_form.old_password }}
+                
+                <label for="new_password1">New Password:</label>
+                {{ password_form.new_password1 }}
+            
+                <label for="new_password2">Confirm New Password:</label>
+                {{ password_form.new_password2 }}
+            
+                <button type="submit" class="btn">Change Password</button>
+            </form> -->
+        </div>
+    </div>
+</body>
+</html>
