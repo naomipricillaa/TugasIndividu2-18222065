@@ -1,4 +1,5 @@
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -10,7 +11,7 @@ SECRET_KEY = 'django-insecure-glm(h_wbg_cx9ge@!_fbz@c3@zt9q_u!eq$4tkqjo#9_$&i+tb
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.vercel.app', '.now.sh']
+ALLOWED_HOSTS = ['127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [
@@ -61,8 +62,12 @@ WSGI_APPLICATION = 'physilab.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'postgres.yaifdjtxzcxvpacuvxkj',
+        'PASSWORD': '@NaomiPricilla22',
+        'HOST': 'aws-0-ap-southeast-1.pooler.supabase.com',  # Atau alamat IP lain yang Anda gunakan
+        'PORT': '6543',  # Port default PostgreSQL
     }
 }
 
@@ -94,11 +99,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']  # Ensure Django finds static files in 'static' directory
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Media files (User-uploaded content)
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'  # Path where uploaded files will be saved
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # Path where uploaded files will be saved
 
 # Authentication Redirects
 LOGIN_REDIRECT_URL = 'landing_page'  # Redirect to landing page after login
