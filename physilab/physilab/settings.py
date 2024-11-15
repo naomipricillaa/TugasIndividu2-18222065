@@ -11,7 +11,7 @@ SECRET_KEY = 'django-insecure-glm(h_wbg_cx9ge@!_fbz@c3@zt9q_u!eq$4tkqjo#9_$&i+tb
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['.vercel.app', 'tugas-individu2-18222065.app', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['.vercel.app', 'localhost', '127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [
@@ -42,7 +42,7 @@ ROOT_URLCONF = 'physilab.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],  # Ensures Django looks in the 'templates' folder
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -98,7 +98,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / 'static']  # Ensure Django finds static files in 'static' directory
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Media files (User-uploaded content)

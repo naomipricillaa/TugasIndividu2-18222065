@@ -6,8 +6,11 @@
             "use": "@vercel/python"
         },
         {
-            "src": "static/**",
-            "use": "@vercel/static"
+            "src": "build_files.sh",
+            "use": "@vercel/static-build",
+            "config": {
+                "distDir": "staticfiles"
+            }
         }
     ],
     "routes": [
@@ -24,6 +27,7 @@
         "DJANGO_SETTINGS_MODULE": "physilab.settings",
         "DJANGO_ENV": "production",
         "DEBUG": "False",
+        "ALLOWED_HOSTS": ".vercel.app",
         "DB_PASSWORD": "@NaomiPricilla22",
         "DB_USER": "postgres.yaifdjtxzcxvpacuvxkj",
         "DB_PORT": "6543",
