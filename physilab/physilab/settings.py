@@ -92,8 +92,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
-STATICFILES_DIRS = [BASE_DIR / 'static']  # Ensures Django finds static files in 'static' directory
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [BASE_DIR / 'static']  # Ensure Django finds static files in 'static' directory
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # Media files (User-uploaded content)
 MEDIA_URL = '/media/'
