@@ -6,6 +6,7 @@ from users import views as user_views
 from django.contrib.auth import views as auth_views
 from django.conf import settings
 from django.conf.urls.static import static
+from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -19,8 +20,9 @@ urlpatterns = [
 
     # Main application paths
     path('', index_page, name='index_page'),
-    path('landing/', landing_page, name='landing_page'),
+    path('landing/', views.landing_page, name='landing_page'),
     path('calc/', calculator_views.calculate_pressure, name='calc'),
+    path('clear_history/', calculator_views.clear_history, name='clear_history'),
     path('material/', material_page, name='material'),
 
     # Include other urls from the 'users' app if there are additional routes

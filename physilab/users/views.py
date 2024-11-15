@@ -5,8 +5,6 @@ from django.contrib import messages
 from .forms import CustomUserCreationForm, UserUpdateForm
 from django.contrib.auth import update_session_auth_hash
 from .models import Profile
-from django.contrib.auth.views import LoginView
-
 
 def signup_view(request):
     if request.method == 'POST':
@@ -24,21 +22,15 @@ def signup_view(request):
 
 def login_view(request):
     if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
+        username = request.POST['username']
+        password = request.POST['password']
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            messages.success(request, f"Selamat datang, {user.username}!")
-            return redirect('home')  # Update to the correct target home page
+            return redirect('landing_page')  # Use 'landing_page' instead of 'home'
         else:
-            messages.error(request, "Username atau password salah.")
+            messages.error(request, "Username or password is incorrect.")
     return render(request, 'login.html')
-
-class CustomLoginView(LoginView):
-    def form_invalid(self, form):
-        messages.error(self.request, "Username or password is incorrect or not registered.")
-        return super().form_invalid(form)
 
 def profile_view(request):
     return render(request, 'profile_view.html', {'user': request.user})

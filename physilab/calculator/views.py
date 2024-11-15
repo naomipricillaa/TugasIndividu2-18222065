@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import CalculationHistory
 
@@ -14,17 +14,11 @@ def calculate_pressure(request):
         pressure = mol * 8.314 * suhu / volume  # P = nRT/V
         result = f"{pressure:.2f} Pa"
 
-        # Check the number of history entries for this user
-        user_history = CalculationHistory.objects.filter(user=request.user)
-        if user_history.count() >= 5:
-            # If there are already 5 entries, delete all history for the user
-            user_history.delete()
-
         # Save the new calculation to the history
         CalculationHistory.objects.create(user=request.user, result=result)
 
-        # Retrieve the latest 5 calculations for this user (will be 1 entry if reset)
-        history = CalculationHistory.objects.filter(user=request.user).order_by('-created_at')[:5]
+        # Retrieve all calculations for this user
+        history = CalculationHistory.objects.filter(user=request.user).order_by('created_at')
 
         # Pass the result and history to the template
         context = {
@@ -33,6 +27,12 @@ def calculate_pressure(request):
         }
         return render(request, 'calc.html', context)
     else:
-        # On GET request, fetch only the history without performing a new calculation
-        history = CalculationHistory.objects.filter(user=request.user).order_by('-created_at')[:5]
+        # On GET request, fetch all history without performing a new calculation
+        history = CalculationHistory.objects.filter(user=request.user).order_by('-created_at')
         return render(request, 'calc.html', {'history': history})
+
+def clear_history(request):
+    # Delete all calculation history for the logged-in user
+    CalculationHistory.objects.filter(user=request.user).delete()
+    # Redirect back to the calculator page (or wherever you want)
+    return redirect('calc')

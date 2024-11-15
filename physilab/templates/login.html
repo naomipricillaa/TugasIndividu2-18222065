@@ -20,15 +20,25 @@
     <p class="logo-text"></p>
 
     <div class="login-container">    
-        <form id="login-form" method="post" action="{% url 'login' %}">
+        {% if messages %}
+            <div class="messages-container">
+                {% for message in messages %}
+                    <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <form method="post" action="{% url 'login' %}">
             {% csrf_token %}
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" required>
-
+        
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" required>
-
-            <button type="submit" class="signup-btn">Login</button>
+        
+            <button type="submit">Login</button>
         </form>
         
         <div class="signup-option">
