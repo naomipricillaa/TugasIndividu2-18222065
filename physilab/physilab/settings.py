@@ -9,9 +9,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-glm(h_wbg_cx9ge@!_fbz@c3@zt9q_u!eq$4tkqjo#9_$&i+tb'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '.vercel.app']
+ALLOWED_HOSTS = ['.vercel.app', 'tugas-individu2-18222065.app', 'localhost', '127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [
