@@ -1,5 +1,6 @@
 from pathlib import Path
 import os
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -16,6 +17,8 @@ CSRF_COOKIE_SECURE = False
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '.vercel.app']
 # Application definition
 
+load_dotenv()
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -26,7 +29,6 @@ INSTALLED_APPS = [
 
     # Custom apps
     'users.apps.UsersConfig',  # Keep only this for the 'users' app
-    'calculator',  # Your app for calculator
 ]
 
 MIDDLEWARE = [
