@@ -1,8 +1,17 @@
 from django.urls import path
-from django.contrib.auth import views as auth_views
-from . import views
+from .views import *
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
-    path('login/', views.login_view, name='login'),
-    path('signup/', views.signup_view, name='signup'),
+    path('signup/', signup_view, name='signup'),
+    path('login/', login_view, name='login'),
+    path('logout/', logout_view, name='logout'),
+    path('profile/', profile_view, name='profile_view'),
+    path('profile/edit/', profile_edit, name='profile_edit'),
+    path('index/', index_page, name='index'),
+    path('landing/', landing_page, name='landing_page'),
+    path('calc/', calculate_pressure, name='calc'),
+    path('clear_history/', clear_history, name='clear_history'),
+    path('material/', material_page, name='material'),
 ]
