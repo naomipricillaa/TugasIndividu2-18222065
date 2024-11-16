@@ -10,9 +10,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-glm(h_wbg_cx9ge@!_fbz@c3@zt9q_u!eq$4tkqjo#9_$&i+tb'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-CSRF_COOKIE_SECURE = False
+DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '.vercel.app']
 # Application definition
@@ -102,11 +100,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / 'static']
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # Media files (User-uploaded content)
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # Path where uploaded files will be saved
+MEDIA_ROOT = BASE_DIR / 'media'
 
 # Authentication Redirects
 LOGIN_REDIRECT_URL = 'landing_page'  # Redirect to landing page after login
@@ -118,3 +116,22 @@ LOGOUT_REDIRECT_URL = 'index_page'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': BASE_DIR / 'debug.log',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}

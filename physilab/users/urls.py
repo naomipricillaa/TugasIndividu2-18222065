@@ -10,6 +10,7 @@ urlpatterns = [
     path('profile/', profile_view, name='profile_view'),
     path('profile/edit/', profile_edit, name='profile_edit'),
     path('index/', index_page, name='index'),
+    path('', index_page, name='home'),  # Handle root URL
     path('landing/', landing_page, name='landing_page'),
     path('calc/', calculate_pressure, name='calc'),
     path('clear_history/', clear_history, name='clear_history'),

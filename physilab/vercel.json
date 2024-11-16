@@ -1,21 +1,21 @@
 {
-    "builds": [{
+  "builds": [{
       "src": "physilab/wsgi.py",
-      "use": "@vercel/python"
-    }],
-    "routes": [{
-      "src": "/(.*)",
-      "dest": "physilab/wsgi.py"
-    }],
-    "env": {
-      "DJANGO_ENV": "production",
-      "DB_PASSWORD": "@NaomiPricilla22",
-      "DB_USER": "postgres.yaifdjtxzcxvpacuvxkj",
-      "DB_PORT": "6543",
-      "DB_NAME": "postgres",
-      "DB_HOST": "aws-0-ap-southeast-1.pooler.supabase.com",
-      "DB_ENGINE": "django.db.backends.postgresql"
-    }
-  }
-
-  
+      "use": "@vercel/python",
+      "config": { "maxLambdaSize": "15mb", "runtime": "python3.10" }
+  }],
+  "routes": [
+      {
+        "src": "/static/(.*)",
+        "dest": "/static/$1"
+      },
+      {
+        "src": "/media/(.*)",
+        "dest": "/media/$1"
+      },
+      {
+        "src": "(.*)",
+        "dest": "physilab/wsgi.py"
+      }
+  ]
+}
