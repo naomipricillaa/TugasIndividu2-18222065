@@ -1,17 +1,11 @@
-# physilab/urls.py
-from django.conf import settings
-from django.conf.urls.static import static
+from django.views.generic import TemplateView
+from users.views import index_page, landing_page
 from django.contrib import admin
 from django.urls import path, include
-from django.shortcuts import redirect
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('users/', include('users.urls')),  # Include the users app's URLs
-    path('', include('users.urls')),  # Default to the users app's URLs for 'index'
+    path('', index_page, name='index'),
+    path('landing/', landing_page, name='landing')
 ]
-
-if settings.DEBUG:
-    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-

@@ -4,7 +4,8 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib import messages
 from .forms import CustomUserCreationForm, UserUpdateForm
 from django.contrib.auth import update_session_auth_hash
-from .models import Profile
+from django.contrib.auth.decorators import login_required
+from .models import CalculationHistory
 
 def signup_view(request):
     if request.method == 'POST':
@@ -70,11 +71,6 @@ def calc_page(request):
 
 def material_page(request):
     return render(request, 'material.html')
-
-
-from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
-from .models import CalculationHistory
 
 def calculate_pressure(request):
     if request.method == 'POST':
